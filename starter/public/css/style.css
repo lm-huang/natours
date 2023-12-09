@@ -1323,3 +1323,12 @@ body {
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
 }
+
+.message-box {
+  display: none;
+  color: #333;
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+}
