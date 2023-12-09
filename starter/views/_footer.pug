@@ -1,33 +1,15 @@
-footer.footer  
-    button#search-button Calculate Distance
+footer.footer
 
-    // 汇率换算器部分
-    <!-- 触发按钮 -->
-    <button id="show-converter">Show Currency Converter</button>
-    <!-- 货币换算器部分，初始隐藏 -->
-    <div class="currency-converter" style="display: none;">
-    .currency-converter
-        h3 Currency Converter
-        .input-group
-            input#amount(type='number', placeholder='Enter amount')
-            select#from-currency
-                option(value='USD') USD
-                option(value='EUR') EUR
-                option(value='CNY') CNY
-            select#to-currency
-                option(value='EUR') EUR
-                option(value='CNY') CNY
-                option(value='USD') USD
-        button#convert Convert
-        .result#result
-    </div>
+    .footer__logo
+        img(src='/img/logo-green.png' alt='Natours logo')
+        button.btn.footer__button#search-button Calculate Your Distance!
     ul.footer__nav 
         li: a(href='#') About us
         li: a(href='#') Download apps
         li: a(href='#') Become a guide
         li: a(href='#') Careers
         li: a(href='#') Contact us
-    p.footer__copyright &copy; by Web Dev. All rights reserved
+    p.footer__copyright &copy; by Natours. All rights reserved
 
     // 引入exchange.js
     script(src='/js/exchange.js')

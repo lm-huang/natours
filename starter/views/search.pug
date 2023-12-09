@@ -10,11 +10,11 @@ block content
                     input#userCity.form__input(type='text', placeholder='Enter your city', required)
                 // 添加按钮来获取城市信息
                 .form__group
-                    button.btn.btn--blue#fetchCityInfo(type='button') Your City Info
+                    button.btn.btn--small#fetchCityInfo(type='button') Your City Info
                 .city-info
                 p#cityInfoResult
                 .form__group.ma-bt-md
-                    label.form__label(for='destinationCity') Destination City
+                    label.form__label(for='destinationCity') Choose a tour spot
                     select#destinationCity.form__input(required)
                         // 预设的目的地城市选项
                         option(value='Miami') Miami
@@ -27,8 +27,8 @@ block content
                         option(value='Yellowknife') Yellowknife
                 // 添加按钮来获取目的地城市信息
                 .form__group
-                    button.btn.btn--blue#fetchDestinationInfo(type='button') Destination City Info
-                .destination-info
+                    button.btn.btn--small#fetchDestinationInfo(type='button') Get Info
+                .heading-box__text
                 p#destinationInfoResult
                 .form__group
                     button.btn.btn--green(type='submit') Calculate

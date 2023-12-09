@@ -20,7 +20,6 @@ const userRouter = require("./starter/routes/userRoutes");
 const reviewRouter = require("./starter/routes/reviewRoutes");
 const bookingRouter = require("./starter/routes/bookingRoutes");
 const viewRouter = require("./starter/routes/viewRoutes");
-const cors = require("cors");
 
 const app = express();
 const cors = require("cors");
