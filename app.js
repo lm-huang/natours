@@ -22,6 +22,50 @@ const bookingRouter = require("./starter/routes/bookingRoutes");
 const viewRouter = require("./starter/routes/viewRoutes");
 
 const app = express();
+const cors = require("cors");
+const fs = require('fs');
+
+
+app.get('/search', (req, res) => {
+  res.render('search', { criteria: req.query.criteria });
+});
+
+
+// 新增一个处理目的地城市经纬度查询的路由
+app.get('/api/destination-coordinates', async (req, res, next) => {
+  try {
+    const cityName = req.query.city;
+    const coordinates = await getTourCoordinates(cityName);
+    res.status(200).json({
+      status: 'success',
+      data: {
+        coordinates: coordinates
+      }
+    });
+  } catch (error) {
+    next(error); // 使用全局错误处理
+  }
+});
+
+// 根据城市名称获取经纬度的函数
+function getTourCoordinates(cityName) {
+  return new Promise((resolve, reject) => {
+    const toursFilePath = path.join(__dirname, 'tours.json'); // 调整路径
+    fs.readFile(toursFilePath, 'utf-8', (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      const tours = JSON.parse(data);
+      const tour = tours.find(tour => tour.startLocation.description.includes(cityName));
+      if (tour) {
+        resolve(tour.startLocation.coordinates);
+      } else {
+        reject(new Error('City not found'));
+      }
+    });
+  });
+}
 
 //serving static files
 app.use(express.static(`${__dirname}/starter/public`));
