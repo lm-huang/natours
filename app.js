@@ -48,23 +48,22 @@ app.get('/api/destination-coordinates', async (req, res, next) => {
   }
 });
 
-// 根据城市名称获取经纬度的函数
+const Tour = require('./starter/models/tourModel'); // 确保路径正确
+
 function getTourCoordinates(cityName) {
   return new Promise((resolve, reject) => {
-    const toursFilePath = path.join(__dirname, 'tours.json'); // 调整路径
-    fs.readFile(toursFilePath, 'utf-8', (err, data) => {
-      if (err) {
+    Tour.findOne({ 'startLocation.description': { $regex: cityName, $options: 'i' } })
+      .then(tour => {
+        if (tour) {
+          resolve(tour.startLocation.coordinates);
+        } else {
+          reject(new Error('City not found'));
+
+        }
+      })
+      .catch(err => {
         reject(err);
-        return;
-      }
-      const tours = JSON.parse(data);
-      const tour = tours.find(tour => tour.startLocation.description.includes(cityName));
-      if (tour) {
-        resolve(tour.startLocation.coordinates);
-      } else {
-        reject(new Error('City not found'));
-      }
-    });
+      });
   });
 }
 app.use(cors())
