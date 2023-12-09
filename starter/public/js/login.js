@@ -23,6 +23,18 @@
 
 import { showAlert } from './alert.js';
 
+const passwordElement = document.getElementById('password');
+const emailElement = document.getElementById('email');
+
+if (loginForm && passwordElement && emailElement) {
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const password = passwordElement.value;
+    const email = emailElement.value;
+    login(email, password);
+  });
+}
+
 const login = async (email, password) => {
   try {
     const res = await axios({
