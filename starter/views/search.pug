@@ -1,0 +1,38 @@
+extends base 
+
+block content
+    main.main
+        .login-form
+            h2.heading-secondary.ma-bt-lg Calculate Distance
+            form.form.form--login(action='/calculate-distance', method='POST')
+                .form__group
+                    label.form__label(for='userCity') Your City
+                    input#userCity.form__input(type='text', placeholder='Enter your city', required)
+                // 添加按钮来获取城市信息
+                .form__group
+                    button.btn.btn--small#fetchCityInfo(type='button') Your City Info
+                .city-info
+                p#cityInfoResult
+                .form__group.ma-bt-md
+                    label.form__label(for='destinationCity') Choose a tour spot
+                    select#destinationCity.form__input(required)
+                        // 预设的目的地城市选项
+                        option(value='Miami') Miami
+                        option(value='Utah') Utah
+                        option(value='Banff') Banff
+                        option(value='Las Vegas') Las Vegas
+                        option(value='Aspen') Aspen
+                        option(value='California') California
+                        option(value='NYC') NYC
+                        option(value='Yellowknife') Yellowknife
+                // 添加按钮来获取目的地城市信息
+                .form__group
+                    button.btn.btn--small#fetchDestinationInfo(type='button') Get Info
+                .heading-box__text
+                p#destinationInfoResult
+                .form__group
+                    button.btn.btn--green(type='submit') Calculate
+                // 添加一个用于显示消息的元素
+                .message-box(style='display: none;') // 初始隐藏
+
+    script(src='/js/search.js')
